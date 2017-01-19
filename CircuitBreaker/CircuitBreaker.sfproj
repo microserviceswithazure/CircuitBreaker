@@ -29,7 +29,8 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Web1\Web1.xproj" />
+    <ProjectReference Include="..\WeatherService\WeatherService.csproj" />
+    <ProjectReference Include="..\Web1\CompositeWeb.xproj" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
   <PropertyGroup>

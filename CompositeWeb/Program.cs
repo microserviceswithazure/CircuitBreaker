@@ -1,11 +1,11 @@
-﻿using Microsoft.ServiceFabric.Services.Runtime;
-using System;
-using System.Diagnostics;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace Web1
+﻿namespace CompositeWeb
 {
+    using System;
+    using System.Diagnostics;
+    using System.Threading;
+
+    using Microsoft.ServiceFabric.Services.Runtime;
+
     internal static class Program
     {
         /// <summary>

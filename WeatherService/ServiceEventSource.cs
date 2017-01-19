@@ -7,9 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.ServiceFabric.Services.Runtime;
 
-namespace Web1
+namespace WeatherService
 {
-    [EventSource(Name = "MyCompany-CircuitBreaker-Web1")]
+    [EventSource(Name = "MyCompany-CircuitBreaker-WeatherService")]
     internal sealed class ServiceEventSource : EventSource
     {
         public static readonly ServiceEventSource Current = new ServiceEventSource();

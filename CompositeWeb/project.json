@@ -1,4 +1,5 @@
 {
+  "title": "CompositeWeb",
   "dependencies": {
     "Microsoft.AspNetCore.Diagnostics": "1.0.0",
     "Microsoft.AspNetCore.Mvc": "1.0.1",
