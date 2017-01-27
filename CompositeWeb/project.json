@@ -20,7 +20,8 @@
     "Microsoft.ServiceFabric.AspNetCore.WebListener": "2.4.145-preview",
     "Microsoft.ServiceFabric.Data": "2.4.145",
     "Microsoft.ServiceFabric.Services": "2.4.145",
-    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0"
+    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
+    "Polly": "5.0.3"
   },
 
   "tools": {

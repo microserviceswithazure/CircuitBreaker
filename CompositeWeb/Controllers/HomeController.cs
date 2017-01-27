@@ -9,18 +9,17 @@
             return this.View();
         }
 
-        public IActionResult About()
+        public IActionResult Weather()
         {
-            this.ViewData["Message"] = "Your application description page.";
 
-            return this.View();
+            return this.PartialView();
         }
 
-        public IActionResult Contact()
-        {
-            this.ViewData["Message"] = "Your contact page.";
 
-            return this.View();
+        public IActionResult Counter()
+        {
+
+            return this.PartialView();
         }
 
         public IActionResult Error()

@@ -8,14 +8,14 @@ using Microsoft.ServiceFabric.Data.Collections;
 using Microsoft.ServiceFabric.Services.Communication.Runtime;
 using Microsoft.ServiceFabric.Services.Runtime;
 
-namespace WeatherService
+namespace CounterService
 {
     /// <summary>
     /// An instance of this class is created for each service replica by the Service Fabric runtime.
     /// </summary>
-    internal sealed class WeatherService : StatefulService
+    internal sealed class CounterService : StatefulService
     {
-        public WeatherService(StatefulServiceContext context)
+        public CounterService(StatefulServiceContext context)
             : base(context)
         { }
 
