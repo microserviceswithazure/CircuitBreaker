@@ -4,23 +4,29 @@
 
 <div class="row">
     <div class="col-md-4">
-        <h2>Weather</h2>
-        @Html.Partial("Weather")
+        <h2>Weather Widget</h2>
+        <div id="weatherView" style="border: 1px solid black; padding: 10px; height: 300px;">
+            @await Component.InvokeAsync("Weather")
+        </div>
     </div>
     <div class="col-md-4">
-        <h2>Counter</h2>
-        @Html.Partial("Counter")
+        <h2>Counter Widget</h2>
+        <div id="counterView" style="border:1px solid black; padding: 10px;height:300px">
+            @await Component.InvokeAsync("Counter")
+        </div>
     </div>
     <div class="col-md-4">
         <h2>Status</h2>
-        The widgets on this screen update every 15 seconds. Terminate individual microservices to enable circuit breaker.
-        <h3>Weather Script Activity</h3>
-        <div id="weatherNotifications"></div>
-        <h3>Counter Script Activity</h3>
-        <div id="counterNotifications"></div>
+        <div id="alert-success" class="alert alert-success" style="padding: 5px;"><h4>The widgets on this screen will refresh every 10 seconds. <br />Errors in services are simulated.</h4></div>
     </div>
 </div>
 
 <script>
-    
+    $(document).ready(function () {
+        setTimeout(function () {
+            $('#alert-success').slideUp('slow').fadeOut(function () {
+                window.location.reload();
+            });
+        }, 10000);
+    });
 </script>

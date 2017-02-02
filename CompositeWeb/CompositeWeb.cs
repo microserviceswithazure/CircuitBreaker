@@ -13,9 +13,9 @@
     /// <summary>
     /// The FabricRuntime creates an instance of this class for each service type instance. 
     /// </summary>
-    internal sealed class Web1 : StatelessService
+    internal sealed class CompositeWeb : StatelessService
     {
-        public Web1(StatelessServiceContext context)
+        public CompositeWeb(StatelessServiceContext context)
             : base(context)
         { }
 

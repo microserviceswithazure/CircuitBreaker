@@ -5,7 +5,7 @@
     using System.Fabric;
     using System.Threading.Tasks;
 
-    [EventSource(Name = "MyCompany-CircuitBreaker-Web1")]
+    [EventSource(Name = "MyCompany-CircuitBreaker-CompositeWeb")]
     internal sealed class ServiceEventSource : EventSource
     {
         public static readonly ServiceEventSource Current = new ServiceEventSource();

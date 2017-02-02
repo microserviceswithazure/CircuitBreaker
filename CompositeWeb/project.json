@@ -30,7 +30,13 @@
   },
 
   "frameworks": {
-    "net452": { }
+    "net452": {
+      "dependencies": {
+        "Communication": {
+          "target": "project"
+        }
+      }
+    }
   },
 
   "buildOptions": {

@@ -1,17 +1,17 @@
-﻿using System;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace CompositeWeb.Models
+﻿namespace CompositeWeb.Models
 {
-    using System.Security.AccessControl;
+    using System;
 
     public class WeatherReport
     {
+        #region Public Properties
+
         public string Temprature { get; set; }
-        public string Weather { get; set; }
+
         public DateTime UpdatedAt { get; set; }
+
+        public string Weather { get; set; }
+
+        #endregion
     }
 }

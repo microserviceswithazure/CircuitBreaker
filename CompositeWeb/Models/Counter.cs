@@ -1,16 +1,15 @@
-﻿using System;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace CompositeWeb.Models
+﻿namespace CompositeWeb.Models
 {
-    using System.Security.AccessControl;
+    using System;
 
     public class Counter
     {
-        public int Value { get; set; }
+        #region Public Properties
+
         public DateTime UpdatedAt { get; set; }
+
+        public int Value { get; set; }
+
+        #endregion
     }
 }

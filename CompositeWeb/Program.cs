@@ -20,10 +20,10 @@
                 // When Service Fabric creates an instance of this service type,
                 // an instance of the class is created in this host process.
 
-                ServiceRuntime.RegisterServiceAsync("Web1Type",
-                    context => new Web1(context)).GetAwaiter().GetResult();
+                ServiceRuntime.RegisterServiceAsync("CompositeWebType",
+                    context => new CompositeWeb(context)).GetAwaiter().GetResult();
 
-                ServiceEventSource.Current.ServiceTypeRegistered(Process.GetCurrentProcess().Id, typeof(Web1).Name);
+                ServiceEventSource.Current.ServiceTypeRegistered(Process.GetCurrentProcess().Id, typeof(CompositeWeb).Name);
 
                 // Prevents this host process from terminating so services keeps running. 
                 Thread.Sleep(Timeout.Infinite);

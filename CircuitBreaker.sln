@@ -7,11 +7,11 @@ Project("{A07B5EB6-E848-4116-A8D0-A826331D98C6}") = "CircuitBreaker", "CircuitBr
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CompositeWeb", "CompositeWeb\CompositeWeb.xproj", "{517D59C4-3F48-4892-82A3-118F82F85189}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cache.Redis", "Cache.Redis\Cache.Redis.csproj", "{D849A01A-DF12-4306-B8CD-22CC9871D8E0}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherService", "WeatherService\WeatherService.csproj", "{C3FAA81C-2751-445B-AA16-C5AD4899325F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CounterService", "CounterService\CounterService.csproj", "{16422B8B-586C-4B19-84EB-679A34CD97A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Communication", "Communication\Communication.csproj", "{0BA8361C-94B7-4249-8F87-2E1B83A74042}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,14 +37,6 @@ Global
 		{517D59C4-3F48-4892-82A3-118F82F85189}.Release|Any CPU.Build.0 = Release|Any CPU
 		{517D59C4-3F48-4892-82A3-118F82F85189}.Release|x64.ActiveCfg = Release|Any CPU
 		{517D59C4-3F48-4892-82A3-118F82F85189}.Release|x64.Build.0 = Release|Any CPU
-		{D849A01A-DF12-4306-B8CD-22CC9871D8E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D849A01A-DF12-4306-B8CD-22CC9871D8E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D849A01A-DF12-4306-B8CD-22CC9871D8E0}.Debug|x64.ActiveCfg = Debug|x64
-		{D849A01A-DF12-4306-B8CD-22CC9871D8E0}.Debug|x64.Build.0 = Debug|x64
-		{D849A01A-DF12-4306-B8CD-22CC9871D8E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D849A01A-DF12-4306-B8CD-22CC9871D8E0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D849A01A-DF12-4306-B8CD-22CC9871D8E0}.Release|x64.ActiveCfg = Release|Any CPU
-		{D849A01A-DF12-4306-B8CD-22CC9871D8E0}.Release|x64.Build.0 = Release|Any CPU
 		{C3FAA81C-2751-445B-AA16-C5AD4899325F}.Debug|Any CPU.ActiveCfg = Debug|x64
 		{C3FAA81C-2751-445B-AA16-C5AD4899325F}.Debug|x64.ActiveCfg = Debug|x64
 		{C3FAA81C-2751-445B-AA16-C5AD4899325F}.Debug|x64.Build.0 = Debug|x64
@@ -57,6 +49,14 @@ Global
 		{16422B8B-586C-4B19-84EB-679A34CD97A2}.Release|Any CPU.ActiveCfg = Release|x64
 		{16422B8B-586C-4B19-84EB-679A34CD97A2}.Release|x64.ActiveCfg = Release|x64
 		{16422B8B-586C-4B19-84EB-679A34CD97A2}.Release|x64.Build.0 = Release|x64
+		{0BA8361C-94B7-4249-8F87-2E1B83A74042}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BA8361C-94B7-4249-8F87-2E1B83A74042}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BA8361C-94B7-4249-8F87-2E1B83A74042}.Debug|x64.ActiveCfg = Debug|x64
+		{0BA8361C-94B7-4249-8F87-2E1B83A74042}.Debug|x64.Build.0 = Debug|x64
+		{0BA8361C-94B7-4249-8F87-2E1B83A74042}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BA8361C-94B7-4249-8F87-2E1B83A74042}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BA8361C-94B7-4249-8F87-2E1B83A74042}.Release|x64.ActiveCfg = Release|Any CPU
+		{0BA8361C-94B7-4249-8F87-2E1B83A74042}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
