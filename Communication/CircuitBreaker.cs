@@ -1,7 +1,9 @@
 namespace Communication
 {
     using System;
+    using System.Runtime.InteropServices;
     using System.Threading;
+    using System.Threading.Tasks;
 
     using Microsoft.ServiceFabric.Data;
     using Microsoft.ServiceFabric.Data.Collections;
@@ -12,16 +14,13 @@ namespace Communication
 
         private readonly int resetTimeoutInMilliseconds;
 
-        private DateTime? errorTime;
-
         public CircuitBreaker(IReliableStateManager stateManager, int resetTimeoutInMilliseconds)
         {
             this.stateManager = stateManager;
             this.resetTimeoutInMilliseconds = resetTimeoutInMilliseconds;
-            this.errorTime = null;
         }
 
-        public async void Invoke(Action func, Action failAction)
+        public async Task Invoke(Func<Task> func, Func<Task> failAction)
         {
             var errorHistory = await this.stateManager.GetOrAddAsync<IReliableDictionary<string, DateTime>>("errorHistory");
             var cts = new CancellationTokenSource();
@@ -30,31 +29,37 @@ namespace Communication
 
             using (var tx = this.stateManager.CreateTransaction())
             {
-                if (this.errorTime.HasValue)
+                var errorTime = await errorHistory.TryGetValueAsync(tx, "errorTime");
+                if (errorTime.HasValue)
                 {
-                    if ((DateTime.Now - this.errorTime.Value).TotalMilliseconds < this.resetTimeoutInMilliseconds)
+                    if ((DateTime.UtcNow - errorTime.Value).TotalMilliseconds < this.resetTimeoutInMilliseconds)
                     {
-                        failAction.Invoke();
+                        await failAction();
+                        return;
                     }
                 }
                 try
                 {
-                    var result = await errorHistory.TryGetValueAsync(tx, "errorTime");
-                    if (result.HasValue)
-                    {
-                        this.errorTime = result.Value;
-                    }
-
-                    func.Invoke();
-                    this.errorTime = null;
+                    await func();
+                    await errorHistory.AddOrUpdateAsync(
+                        tx,
+                        "errorTime",
+                        key => DateTime.MinValue,
+                        (key, value) => DateTime.MinValue);
                 }
                 catch (Exception)
                 {
-                    this.errorTime = DateTime.Now;
-                    failAction.Invoke();
+                    await failAction();
+                    await errorHistory.AddOrUpdateAsync(
+                        tx,
+                        "errorTime",
+                        key => DateTime.UtcNow,
+                        (key, value) => DateTime.UtcNow);
                 }
-
-                await tx.CommitAsync();
+                finally
+                {
+                    await tx.CommitAsync();
+                }
             }
         }
     }

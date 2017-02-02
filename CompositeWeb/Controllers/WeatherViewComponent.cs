@@ -17,13 +17,11 @@
 
         private readonly IWeatherService weatherServiceClient =
             ServiceProxy.Create<IWeatherService>(WeatherServiceUri, new ServicePartitionKey("basic"));
-    
+
         public async Task<IViewComponentResult> InvokeAsync()
         {
-           // var result =  await this.weatherServiceClient.GetReport("2010");
-            return this.View(new WeatherReport());
+            var result = await this.weatherServiceClient.GetReport("2010");
+            return this.View(result);
         }
-
-
     }
 }

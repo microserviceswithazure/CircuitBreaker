@@ -20,8 +20,8 @@
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            // var result =  await this.weatherServiceClient.GetReport("2010");
-            return this.View(new CounterResult());
+            var result =  await this.counterServiceClient.GetValue();
+            return this.View(result);
         }
 
 
