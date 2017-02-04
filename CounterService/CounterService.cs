@@ -46,6 +46,7 @@
                         {
                             throw new ApplicationException();
                         }
+                        Thread.Sleep(TimeSpan.FromSeconds(2));
                         result = new CounterResult
                         {
                             Value = random,

@@ -1,6 +1,7 @@
 ﻿namespace CompositeWeb.Controllers
 {
     using System;
+    using System.Diagnostics;
     using System.Fabric;
     using System.Threading.Tasks;
 
@@ -20,7 +21,10 @@
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
+            var watch = Stopwatch.StartNew();
             var result =  await this.counterServiceClient.GetValue();
+            watch.Stop();
+            result.ResponseTimeInSeconds = watch.Elapsed.TotalSeconds;
             return this.View(result);
         }
 
