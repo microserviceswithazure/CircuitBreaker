@@ -2,6 +2,8 @@
 {
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.Caching.Distributed;
+    using Microsoft.Extensions.Caching.Redis;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
@@ -23,6 +25,14 @@
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IDistributedCache>(
+            serviceProvider =>
+                new RedisCache(new RedisCacheOptions
+                {
+                    Configuration = "igniteau.redis.cache.windows.net:6380,password=R2hTj51gd3H27RGDzZuAJgFoxf9/En4HdMzqdMc87TM=,ssl=True,abortConnect=False"
+                }));
+
+            services.AddSession();
             // Add framework services.
             services.AddMvc();
         }
@@ -35,6 +45,7 @@
             app.UseDeveloperExceptionPage();
             app.UseBrowserLink();
             app.UseStaticFiles();
+            app.UseSession();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

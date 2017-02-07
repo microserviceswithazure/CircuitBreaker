@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Configuration;
     using System.Fabric;
     using System.Threading;
     using System.Threading.Tasks;
@@ -14,6 +15,8 @@
     using Microsoft.ServiceFabric.Services.Runtime;
 
     using Newtonsoft.Json;
+
+    using RestSharp;
 
     /// <summary>
     ///     An instance of this class is created for each service replica by the Service Fabric runtime.
@@ -30,7 +33,7 @@
 
         public async Task<WeatherReport> GetReport(string postCode)
         {
-            var random = new Random().Next(25, 35);
+
             var counterState = await this.StateManager.GetOrAddAsync<IReliableDictionary<string, string>>(
                 "weatherState");
             var cts = new CancellationTokenSource();
@@ -40,20 +43,16 @@
             await this.circuitBreaker.Invoke(
                 async () =>
                 {
-                    // mocking service result. randomly failing the service call.
-                    var failureSeed = new Random().Next(1, 20);
-                    if (failureSeed % 3 == 0)
+                    var client = new RestClient(ConfigurationManager.AppSettings["weatherapi"]);
+                    var request = new RestRequest("?postCode={postCode}", Method.GET);
+                    request.AddUrlSegment("postCode", postCode);
+                    var response = client.Execute<WeatherReport>(request);
+                    if (response?.Data != null)
                     {
-                        throw new ApplicationException();
+                        result = response.Data;
+                        result.CircuitState = "Open";
                     }
-                    Thread.Sleep(TimeSpan.FromSeconds(2));
-                    result = new WeatherReport
-                    {
-                        Temperature = random,
-                        WeatherConditions = random < 30 ? "Cloudy" : "Sunny",
-                        ReportTime = DateTime.UtcNow,
-                        CircuitState = "Open"
-                    };
+
                     using (var tx = this.StateManager.CreateTransaction())
                     {
                         await counterState.AddOrUpdateAsync(

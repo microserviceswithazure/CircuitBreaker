@@ -30,7 +30,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CompositeWeb\CompositeWeb.xproj" />
-    <ProjectReference Include="..\CounterService\CounterService.csproj" />
     <ProjectReference Include="..\WeatherService\WeatherService.csproj" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
