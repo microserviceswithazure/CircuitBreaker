@@ -8,6 +8,8 @@ using Swashbuckle.Swagger.Annotations;
 
 namespace WeatherApp.Controllers
 {
+    using System.Threading;
+
     using Communication;
 
     public class WeatherController : ApiController
@@ -17,6 +19,7 @@ namespace WeatherApp.Controllers
         [SwaggerResponse(HttpStatusCode.NotFound)]
         public WeatherReport GetWeather(string postCode)
         {
+            Thread.Sleep(TimeSpan.FromSeconds(2));
             var random = new Random().Next(25, 35);
             return new WeatherReport
             {

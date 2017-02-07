@@ -46,11 +46,16 @@
                     var client = new RestClient(ConfigurationManager.AppSettings["weatherapi"]);
                     var request = new RestRequest("?postCode={postCode}", Method.GET);
                     request.AddUrlSegment("postCode", postCode);
+                    request.Timeout = TimeSpan.FromSeconds(10).Milliseconds;
                     var response = client.Execute<WeatherReport>(request);
                     if (response?.Data != null)
                     {
                         result = response.Data;
                         result.CircuitState = "Open";
+                    }
+                    else
+                    {
+                        throw new ApplicationException();
                     }
 
                     using (var tx = this.StateManager.CreateTransaction())
